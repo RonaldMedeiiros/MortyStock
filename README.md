@@ -14,7 +14,9 @@ Para executar MortyStock, você precisará de:
 2. Clone ou baixe o código-fonte do MortyStock para o seu ambiente local.
 3. Configure o acesso ao banco de dados editando o arquivo de configuração do PDO_MySQL com suas credenciais de banco de dados.
 4. Inicie o servidor PHP no vscode com o comando:
-`bash php -S localhost:3333`
+```bash 
+php -S localhost:3333
+``` 
 5. Acesse o sistema via navegador através do endereço: http://localhost:3333
 
 ## Funcionalidades
