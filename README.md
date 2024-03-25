@@ -1,5 +1,4 @@
-# Projeto MortyStock
-##### Aula Metodologia Ágil
+# Projeto MortyStock - Metodologia Ágil
 
 ## Sobre
 MortyStock é um programa de gestão de estoque desenhado para facilitar o cadastro e monitoramento de produtos em diversas categorias. Com funcionalidades que permitem registrar detalhes importantes como nome do produto, setor, status, tipo de embalagem, quantidade ideal, data da última entrada, estoque atual, preço de custo, preço de venda, quantidade vendida e tipo de etiqueta, MortyStock é a ferramenta ideal para gerenciar eficientemente seu inventário. Além disso, oferece um dashboard interativo com gráficos para uma visualização rápida do estado do estoque e das vendas.
