@@ -1,6 +1,7 @@
 /* Estilo para o fundo cinza claro */
 body {
     background-color: #b9b9b9;
+    font-family: "Roboto", sans-serif;
 }
 
 /* Estilo para os containers */
@@ -144,3 +145,27 @@ nav li {
     font-size: 15px;
     color: white;
 }
+
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  table,
+  th,
+  td {
+    border: 1px solid #ddd;
+  }
+  th,
+  td {
+    text-align: left;
+    padding: 8px;
+  }
+  th {
+    background-color: #f5cb5c;
+    color: rgb(8, 8, 8);
+  }
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }

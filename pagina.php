@@ -1,31 +1,35 @@
 <?php
 include_once 'banco.php';
-function atualizaTickets($conn) {
-    
+function atualizaTickets($conn)
+{
+
     // Consulta SQL para obter os últimos tickets
     try {
-                
+
         $sql = "SELECT * FROM PRODUTOS ORDER BY ID LIMIT 9";
         $stmt = $conn->query($sql);
         $stmt->execute();
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            echo '<div class="produtos">';
-            echo '<h2> ID PRODUTO ' . $row['ID'] . '</h2>';
-            echo '<p> PRODUTO: ' . $row['NOME_PRODUTO'] . '</p>';
-            echo '<p> DATA: ' . $row['DATA_ULT_ENTR'] . '</p>';
-            echo '<p> SETOR: ' . $row['SETOR'] . '</p>';
-            echo '</div>';
+            echo '<tr>';
+            echo '<td>' . $row['ID'] . '</td>';
+            echo '<td>' . $row['NOME_PRODUTO'] . '</td>';
+            echo '<td>' . $row['SETOR'] . '</td>';
+            echo '<td>' . $row['ESTOQ_EMB1'] . '</td>';
+            echo '<td>' . $row['PRECO_VENDA'] . '</td>';
+            echo '<td>' . $row['CUSTO'] . '</td>';
+            echo '</tr>';
         }
 
         $conexao = null;
-        } catch (PDOException $e) {
+    } catch (PDOException $e) {
         // Mensagem será exibida se ocorrer um erro. 
         echo 'Erro na consulta: ' . $e->getMessage();
-        }
     }
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,9 +38,10 @@ function atualizaTickets($conn) {
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <title>Sistema de Tickets</title>
 </head>
+
 <body>
 
-                <!--  
+    <!--  
                 $queryTodos = "SELECT COUNT(*) FROM tickets";
                 $resultadoTodos = $conn->query($queryTodos);                            
                 $queryN1 = "SELECT COUNT(*) FROM tickets WHERE nivel_atribuido = 'Nível 1' AND tags like '%n1%'";
@@ -70,33 +75,51 @@ function atualizaTickets($conn) {
         <a href="/pagina.php">Página Inicial</a>
         <a href="https://trello.com/b/5iTC7Pey/mortystock" target="_blank">Trello</a>
         <a href="logout.php" class="link" id="logout">Logout</a>
-        
-        
+
+
     </div>
-    
+
     <div class='titulopagina'>
         <div class="charts-container">
             <div class="charts">
-            <h1>Quantidade de Ticket</h1>
+                <h1>Grafico 1</h1>
                 <?php
                 //include 'graficoNivel.php'; 
                 ?>
             </div>
             <div class="charts">
-                <h1>Status do Ticket</h1>
+                <h1>Grafico 2</h1>
                 <?php
                 //include 'graficoStatus.php';
                 ?>
             </div>
             <div class="charts">
-
+            <h1>Grafico 3</h1>
             </div>
         </div>
-        <h1>Últimos Tickets <i class="fas fa-sync-alt update-icon"></i></h1>
-        <div class="ticket-container">
-            <?php
-            //atualizaTickets($conn);
-            ?>
+        <!-- <h1>Últimos Tickets <i class="fas fa-sync-alt update-icon"></i></h1> -->
+        <div class="tabela-produtos-container">
+            <h2>Produtos</h2>
+
+
+            <table id="tabelaProdutos">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Produto</th>
+                        <th>Setor</th>
+                        <th>Estoque</th>
+                        <th>Preço</th>
+                        <th>Custo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    atualizaTickets($conn);
+                    ?>
+                </tbody>
+            </table>
+
         </div>
         <div>
             <?php
@@ -109,4 +132,5 @@ function atualizaTickets($conn) {
         document.querySelector('.ticket-container').addEventListener('click', atualizaTickets($conn));
     </script>
 </body>
+
 </html>
