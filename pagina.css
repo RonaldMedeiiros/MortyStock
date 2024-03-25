@@ -1,0 +1,146 @@
+/* Estilo para o fundo cinza claro */
+body {
+    background-color: #b9b9b9;
+}
+
+/* Estilo para os containers */
+.ticket {
+    background-color: white; /* Cor de fundo dos containers */
+    border-radius: 10px; /* Bordas arredondadas */
+    padding: 20px; /* Espaçamento interno */
+    margin: 10px; /* Espaçamento externo */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra leve */
+    font-family: "Arial", sans-serif; /* Fonte */
+    font-weight: bold; /* Peso da fonte */
+}
+
+/* Estilo para o título */
+h1 {
+    font-family: "Arial", sans-serif; /* Fonte */
+    font-weight: bold; /* Peso da fonte */
+}
+
+/* Estilos CSS para a barra lateral */
+.sidenav {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    padding-top: 20px;
+}
+
+.sidenav a {
+    padding: 15px 35px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+}
+
+
+
+.sidenav a:hover {
+    background-color: #555;
+}
+
+.sidenav h2 {
+    color: white;
+}
+
+.update-icon {
+    font-size: 15px; /* Tamanho desejado para o ícone */
+    margin-right: 5px; /* Espaçamento à direita do ícone (opcional) */
+}
+
+.titulopagina{
+    margin-left: 270px; /* Deve ser maior que a largura da barra lateral */
+    padding: 20px;
+    z-index: 1; /* Defina um valor de z-index menor */
+}
+
+.charts-container {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas */
+    gap: 5px; /* Espaço entre os tickets */
+    
+}
+
+.charts {
+    background-color: #f0f0f0;
+    padding: 10px;
+    background-color: white; /* Cor de fundo dos containers */
+    border-radius: 10px; /* Bordas arredondadas */
+    margin: 10px; /* Espaçamento externo */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra leve */
+    font-family: "Arial", sans-serif; /* Fonte */
+    font-weight: bold; /* Peso da fonte */
+}
+
+.charts h1 {
+    text-align: center;
+}
+/* Estilos CSS para o container de tickets usando CSS Grid */
+.ticket-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas */
+    grid-template-rows: repeat(3, 1fr); /* 3 linhas */
+    gap: 5px; /* Espaço entre os tickets */
+}
+
+
+/* Estilo para o container do iframe na barra lateral */
+iframe {
+    margin-top: 80px;
+}
+
+/* Estilo para o cabeçalho */
+header {
+    position: fixed; /* Fixa o cabeçalho no topo */
+    top: 0; /* Coloca o cabeçalho no topo da página */
+    width: 100%; /* Largura na tela toda */
+    height: 50px; /* Altura de 50px */
+    background-color: #333; /* Fundo cinza escuro */
+    color: #fff; /* Cor do texto branca */
+    font-family: "Arial", sans-serif; /* Fonte */
+    z-index: 2; /* Defina um valor de z-index maior */
+}
+
+/* Estilo para o título no cabeçalho */
+h2 {
+    margin-left: 10px; 
+    margin-top: 40px;
+}
+
+/* Estilo para a lista de navegação no cabeçalho */
+nav ul {
+    text-align: center;
+    list-style: none; /* Remove marcadores de lista */
+    margin-left: 270px; /* Remove margens padrão */
+    padding: 0; /* Remove preenchimento padrão */
+}
+
+nav li {
+    display: inline-block; /* Exibe os itens da lista em linha */
+    margin-right: 20px; /* Espaçamento à direita de 20px entre os itens */
+}
+
+.link {
+    cursor: pointer;
+    color: #ffffff; /* cor do texto do link */
+    text-decoration: none;
+}
+
+.link:active {
+    color: #087cfc; /* cor quando o link é clicado */
+}
+
+#logout {
+    margin-top: 50px;
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 15px;
+    color: white;
+}
