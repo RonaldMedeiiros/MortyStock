@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $senhaHash = md5($senha);
 
     // Verificar as credenciais no banco de dados
-    $stmt = $conn->prepare("SELECT * FROM usuarios_login WHERE email = :email AND senha = :senha");
+    $stmt = $conn->prepare("SELECT * FROM USUARIOS WHERE EMAIL = :email AND SENHA = :senha");
     $stmt->bindParam(':email', $email);
     $stmt->bindParam(':senha', $senhaHash);
     $stmt->execute();

@@ -14,9 +14,9 @@
             <form action="processa_login.php" method="post">
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="password" name="senha" placeholder="Senha" required>
-                <button type="submit">Entrar</button>
+                <button type="submit">Entrar</button><br>
+                <button><a href="cadastro.php" class="link">Criar uma conta</a></button>
             </form>
-            <p><a href="cadastro.php" class="link">Criar uma conta</a></p>
         </div>
     </div>
 </body>

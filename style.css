@@ -30,12 +30,12 @@ body {
 
   .link {
     cursor: pointer;
-    color: #ffffff; /* cor do texto do link */
+    color: #232324; /* cor do texto do link */
     text-decoration: none;
   }
 
   .link:active {
-      color: #087cfc; /* cor quando o link é clicado */
+      color: #ffffff; /* cor quando o link é clicado */
   }
   
   input {
@@ -60,6 +60,10 @@ body {
   
   button:hover {
     opacity: 0.9;
+  }
+
+  button:active {
+    color: #ffffff; /* cor quando o link é clicado */
   }
 
   .loginLogo {

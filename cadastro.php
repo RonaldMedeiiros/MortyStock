@@ -8,15 +8,17 @@
 </head>
 <body>
     <div class="container">
+        
         <div class="loginForm">
+        <img class="loginLogo" src="arquivos/Logo 3.png" alt="">
             <h2>Cadastro</h2>
             <form action="processa_cadastro.php" method="post">
                 <input type="text" name="nome" placeholder="Nome" required>
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="password" name="senha" placeholder="Senha" required>
-                <button type="submit">Cadastrar</button>
+                <button type="submit">Cadastrar</button><br>
+                <button><a href="index.php" class="link">Voltar ao Login</a></button>
             </form>
-            <p><a href="index.php" class="link">Voltar ao Login</a></p>
         </div>
     </div>
 </body>

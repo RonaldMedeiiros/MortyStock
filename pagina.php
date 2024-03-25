@@ -12,9 +12,9 @@ function atualizaTickets($conn) {
         // Itera sobre os resultados e exibe os tickets nos containers
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             echo '<div class="ticket">';
-            echo '<h2> Ticket ' . $row['ID'] . '</h2>';
+            echo '<h2> ID PRODUTO ' . $row['ID'] . '</h2>';
             echo '<p> PRODUTO: ' . $row['NOME_PRODUTO'] . '</p>';
-            echo '<p> Data: ' . $row['DATA_ULT_ENTR'] . '</p>';
+            echo '<p> DATA: ' . $row['DATA_ULT_ENTR'] . '</p>';
             echo '<p> SETOR: ' . $row['SETOR'] . '</p>';
             echo '</div>';
         }
@@ -39,7 +39,7 @@ function atualizaTickets($conn) {
 </head>
 <body>
 
-                <?php
+                <!--  
                 $queryTodos = "SELECT COUNT(*) FROM tickets";
                 $resultadoTodos = $conn->query($queryTodos);                            
                 $queryN1 = "SELECT COUNT(*) FROM tickets WHERE nivel_atribuido = 'Nível 1' AND tags like '%n1%'";
@@ -54,20 +54,20 @@ function atualizaTickets($conn) {
                 $resultadoResolvidos = $conn->query($queryResolvidos);
                 $queryFechados = "SELECT COUNT(*) FROM tickets WHERE statusticket = 'Fechado'";
                 $resultadoFechados = $conn->query($queryFechados);
-                ?>
+                ?> 
                 <header class="header header-dark">
                     <nav>
                         <ul>
-                        <li>Todos - <?php echo $resultadoTodos->fetchColumn(); ?></li>
-                        <li>Abertos - <?php echo $resultadoAbertos->fetchColumn(); ?></li>
-                        <li>Nível 1 - <?php echo $resultadoN1->fetchColumn(); ?></li>
-                        <li>Nível 2 - <?php echo $resultadoN2->fetchColumn(); ?></li>
-                        <li>Nível 3 - <?php echo $resultadoN3->fetchColumn(); ?></li>
-                        <li>Resolvidos - <?php echo $resultadoResolvidos->fetchColumn(); ?></li>
-                        <li>Fechados - <?php echo $resultadoFechados->fetchColumn(); ?></li>
+                        <li>Todos -  echo $resultadoTodos->fetchColumn(); ?></li>
+                        <li>Abertos -  echo $resultadoAbertos->fetchColumn(); ?></li>
+                        <li>Nível 1 -  echo $resultadoN1->fetchColumn(); ?></li>
+                        <li>Nível 2 -  echo $resultadoN2->fetchColumn(); ?></li>
+                        <li>Nível 3 -  echo $resultadoN3->fetchColumn(); ?></li>
+                        <li>Resolvidos -  echo $resultadoResolvidos->fetchColumn(); ?></li>
+                        <li>Fechados -  echo $resultadoFechados->fetchColumn(); ?></li>
                         </ul>
                     </nav>
-                </header>
+                </header> -->
     <div class="sidenav">
         <h2>Links Diretos</h2>
         <a href="https://suporte-evolutto.zendesk.com/auth/v2/login" target="_blank">Zendesk</a>
@@ -76,7 +76,7 @@ function atualizaTickets($conn) {
         <a href="https://dash.cloudflare.com/" target="_blank">CloudFlare Subs</a>
         <a href="https://blog.evolutto.com/wp-admin/" target="_blank">Página de Status</a>
         <a href="logout.php" class="link" id="logout">Logout</a>
-        <iframe src="https://alopekis.net/api/botNotificacoes.php" frameborder="0" width="100%" height="400"></iframe>
+        
         
     </div>
     

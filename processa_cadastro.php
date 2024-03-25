@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $senhaHash = md5($senha);
 
     // Inserir usuário no banco de dados
-    $stmt = $conn->prepare("INSERT INTO usuarios_login (nome, email, senha, criado_em) VALUES (:nome, :email, :senha, :criado_em)");
+    $stmt = $conn->prepare("INSERT INTO USUARIOS (NOME, EMAIL, SENHA, DATA_CRIACAO) VALUES (:nome, :email, :senha, :criado_em)");
     $stmt->bindParam(':nome', $nome);
     $stmt->bindParam(':email', $email);
     $stmt->bindParam(':senha', $senhaHash);
