@@ -5,13 +5,11 @@ function atualizaTickets($conn) {
     // Consulta SQL para obter os últimos tickets
     try {
                 
-        $sql = "SELECT * FROM PRODUTOS ORDER BY DATA_ULT_ENT DESC LIMIT 9";
+        $sql = "SELECT * FROM PRODUTOS ORDER BY ID LIMIT 9";
         $stmt = $conn->query($sql);
-        // Executa a consulta
         $stmt->execute();
-        // Itera sobre os resultados e exibe os tickets nos containers
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            echo '<div class="ticket">';
+            echo '<div class="produtos">';
             echo '<h2> ID PRODUTO ' . $row['ID'] . '</h2>';
             echo '<p> PRODUTO: ' . $row['NOME_PRODUTO'] . '</p>';
             echo '<p> DATA: ' . $row['DATA_ULT_ENTR'] . '</p>';
@@ -19,10 +17,9 @@ function atualizaTickets($conn) {
             echo '</div>';
         }
 
-        // Feche a conexão com o banco de dados
         $conexao = null;
         } catch (PDOException $e) {
-        // Se ocorrer um erro, exiba a mensagem de erro
+        // Mensagem será exibida se ocorrer um erro. 
         echo 'Erro na consulta: ' . $e->getMessage();
         }
     }
@@ -70,11 +67,8 @@ function atualizaTickets($conn) {
                 </header> -->
     <div class="sidenav">
         <h2>Links Diretos</h2>
-        <a href="https://suporte-evolutto.zendesk.com/auth/v2/login" target="_blank">Zendesk</a>
-        <a href="https://evoluttobr.atlassian.net/jira/software/projects/MAN/boards/8" target="_blank">Jira</a>
-        <a href="https://app.sendgrid.com/" target="_blank">Sendgrid</a>
-        <a href="https://dash.cloudflare.com/" target="_blank">CloudFlare Subs</a>
-        <a href="https://blog.evolutto.com/wp-admin/" target="_blank">Página de Status</a>
+        <a href="/pagina.php">Página Inicial</a>
+        <a href="https://trello.com/b/5iTC7Pey/mortystock" target="_blank">Trello</a>
         <a href="logout.php" class="link" id="logout">Logout</a>
         
         
@@ -85,13 +79,13 @@ function atualizaTickets($conn) {
             <div class="charts">
             <h1>Quantidade de Ticket</h1>
                 <?php
-                include 'graficoNivel.php';
+                //include 'graficoNivel.php'; 
                 ?>
             </div>
             <div class="charts">
                 <h1>Status do Ticket</h1>
                 <?php
-                include 'graficoStatus.php';
+                //include 'graficoStatus.php';
                 ?>
             </div>
             <div class="charts">
@@ -101,7 +95,7 @@ function atualizaTickets($conn) {
         <h1>Últimos Tickets <i class="fas fa-sync-alt update-icon"></i></h1>
         <div class="ticket-container">
             <?php
-            atualizaTickets($conn);
+            //atualizaTickets($conn);
             ?>
         </div>
         <div>

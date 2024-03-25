@@ -1,0 +1,17 @@
+{
+    "name": "ronal/php",
+    "autoload": {
+        "psr-4": {
+            "Ronal\\Php\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ronaldo Medeiros",
+            "email": "ronaldmedeiiros@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
