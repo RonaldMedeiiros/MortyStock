@@ -16,8 +16,6 @@ try {
 
     // Você não precisa da linha MYSQL_ATTR_INIT_COMMAND para SQLite
     // $conn->exec("SET NAMES utf8");
-
-    echo "Conexão com o banco de dados SQLite estabelecida com sucesso.";
 } catch (PDOException $error) {
     echo "Erro ao conectar com o banco de dados SQLite: " . $error->getMessage();
 }
