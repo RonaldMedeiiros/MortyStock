@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bindParam(':criado_em', $dataCriacao);
     
     if ($stmt->execute()) {
-        header('Location: index.php');
+        header('Location: /src/views/login.php');
         exit();
     } else {
         echo "Erro ao cadastrar o usuário.";

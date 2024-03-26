@@ -17,11 +17,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Login bem-sucedido
         session_start();
         $_SESSION['user_id'] = $user['id'];
-        header('Location: pagina.php');
+        header('Location: /src/views/home.php');
         exit();
     } else {
         // Login falhou
-        header('Location: index.php');
+        header('Location: /src/views/login.php');
         exit();
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-require_once 'vendor/autoload.php';
+require_once __DIR__ . '../../../vendor/autoload.php'; // Ajuste o caminho conforme necessário
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '../../../'); // Caminho para a raiz do projeto
 $dotenv->load();
 
 $host = $_ENV['DB_HOST'];

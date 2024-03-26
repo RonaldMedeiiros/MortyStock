@@ -1,5 +1,5 @@
 <?php
-include_once 'banco.php';
+include_once '../controllers/banco.php';
 function atualizaTickets($conn)
 {
 
@@ -33,7 +33,7 @@ function atualizaTickets($conn)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel='stylesheet' type='text/css' media='screen' href='pagina.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/src/assets/css/pagina.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <title>Sistema de Tickets</title>

@@ -8,7 +8,7 @@ body {
   align-items: center;
   height: 100vh;
   background-color: #232324; 
-  background-image: url('arquivos/fundo4.png'); 
+  background-image: url('/src/assets/images/fundo4.png'); 
   background-size: cover;
   background-position: center; 
   }
