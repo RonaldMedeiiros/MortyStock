@@ -2,8 +2,6 @@
 include_once '../controllers/banco.php';
 function atualizaTickets($conn)
 {
-
-    // Consulta SQL para obter os últimos tickets
     try {
 
         $sql = "SELECT * FROM produtos ORDER BY id LIMIT 10";
@@ -19,10 +17,7 @@ function atualizaTickets($conn)
             echo '<td>' . $row['preco_custo'] . '</td>';
             echo '</tr>';
         }
-
-        $conexao = null;
     } catch (PDOException $e) {
-        // Mensagem será exibida se ocorrer um erro. 
         echo 'Erro na consulta: ' . $e->getMessage();
     }
 }
