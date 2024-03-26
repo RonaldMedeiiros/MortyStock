@@ -6,17 +6,17 @@ function atualizaTickets($conn)
     // Consulta SQL para obter os últimos tickets
     try {
 
-        $sql = "SELECT * FROM PRODUTOS ORDER BY ID LIMIT 9";
+        $sql = "SELECT * FROM produtos ORDER BY id LIMIT 10";
         $stmt = $conn->query($sql);
         $stmt->execute();
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             echo '<tr>';
-            echo '<td>' . $row['ID'] . '</td>';
-            echo '<td>' . $row['NOME_PRODUTO'] . '</td>';
-            echo '<td>' . $row['SETOR'] . '</td>';
-            echo '<td>' . $row['ESTOQ_EMB1'] . '</td>';
-            echo '<td>' . $row['PRECO_VENDA'] . '</td>';
-            echo '<td>' . $row['CUSTO'] . '</td>';
+            echo '<td>' . $row['id'] . '</td>';
+            echo '<td>' . $row['nome_produto'] . '</td>';
+            echo '<td>' . $row['setor'] . '</td>';
+            echo '<td>' . $row['estoque'] . '</td>';
+            echo '<td>' . $row['preco_venda'] . '</td>';
+            echo '<td>' . $row['preco_custo'] . '</td>';
             echo '</tr>';
         }
 
