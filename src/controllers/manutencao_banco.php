@@ -7,7 +7,7 @@ $conn = new PDO('sqlite:' . $dbPath);
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 try {
-    $conn->exec("ALTER TABLE usuarios ADD COLUMN email TEXT NOT NULL;");
+    $conn->exec("DELETE FROM produtos WHERE id = 'id'");
     echo "Tabela 'usuarios' atualizada com sucesso!\n";
 ;
 

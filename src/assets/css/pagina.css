@@ -1,11 +1,6 @@
 /* Estilo para o fundo cinza claro */
 body {
     background-color: #b9b9b9;
-    font-family: "Roboto", sans-serif;
-    background-image: url('arquivos/fundo4.png');
-    background-size: cover;
-    background-position: center; 
-}
 
 /* Estilo para os containers */
 .ticket {
@@ -172,3 +167,4 @@ nav li {
   tr:nth-child(even) {
     background-color: #f2f2f2;
   }
+}

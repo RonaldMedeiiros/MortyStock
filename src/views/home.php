@@ -1,26 +1,5 @@
 <?php
 include_once '../controllers/banco.php';
-function atualizaTickets($conn)
-{
-    try {
-
-        $sql = "SELECT * FROM produtos ORDER BY id LIMIT 10";
-        $stmt = $conn->query($sql);
-        $stmt->execute();
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            echo '<tr>';
-            echo '<td>' . $row['id'] . '</td>';
-            echo '<td>' . $row['nome_produto'] . '</td>';
-            echo '<td>' . $row['setor'] . '</td>';
-            echo '<td>' . $row['estoque'] . '</td>';
-            echo '<td>' . $row['preco_venda'] . '</td>';
-            echo '<td>' . $row['preco_custo'] . '</td>';
-            echo '</tr>';
-        }
-    } catch (PDOException $e) {
-        echo 'Erro na consulta: ' . $e->getMessage();
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -29,45 +8,20 @@ function atualizaTickets($conn)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' type='text/css' media='screen' href='/src/assets/css/pagina.css'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" />
+
+    <!-- build:css ../assets/styles/app.min.css -->
+    <link rel="stylesheet" href="../assets/css/app.css" type="text/css" />
+    <!-- endbuild -->
+    <link rel="stylesheet" href="../assets/css/font.css" type="text/css" />
     <title>Sistema de Tickets</title>
 </head>
 
 <body>
-
-    <!--  
-                $queryTodos = "SELECT COUNT(*) FROM tickets";
-                $resultadoTodos = $conn->query($queryTodos);                            
-                $queryN1 = "SELECT COUNT(*) FROM tickets WHERE nivel_atribuido = 'Nível 1' AND tags like '%n1%'";
-                $resultadoN1 = $conn->query($queryN1);                
-                $queryN2 = "SELECT COUNT(*) FROM tickets WHERE nivel_atribuido = 'Nível 2' AND tags like '%n2%'";
-                $resultadoN2 = $conn->query($queryN2);                
-                $queryN3 = "SELECT COUNT(*) FROM tickets WHERE nivel_atribuido = 'Nível 3' AND tags like '%n3%'";
-                $resultadoN3 = $conn->query($queryN3);                
-                $queryAbertos = "SELECT COUNT(*) FROM tickets WHERE statusticket = 'Aberto' OR statusticket = 'Pendente'";
-                $resultadoAbertos = $conn->query($queryAbertos);                
-                $queryResolvidos = "SELECT COUNT(*) FROM tickets WHERE statusticket = 'Resolvido'";
-                $resultadoResolvidos = $conn->query($queryResolvidos);
-                $queryFechados = "SELECT COUNT(*) FROM tickets WHERE statusticket = 'Fechado'";
-                $resultadoFechados = $conn->query($queryFechados);
-                ?> 
-                <header class="header header-dark">
-                    <nav>
-                        <ul>
-                        <li>Todos -  echo $resultadoTodos->fetchColumn(); ?></li>
-                        <li>Abertos -  echo $resultadoAbertos->fetchColumn(); ?></li>
-                        <li>Nível 1 -  echo $resultadoN1->fetchColumn(); ?></li>
-                        <li>Nível 2 -  echo $resultadoN2->fetchColumn(); ?></li>
-                        <li>Nível 3 -  echo $resultadoN3->fetchColumn(); ?></li>
-                        <li>Resolvidos -  echo $resultadoResolvidos->fetchColumn(); ?></li>
-                        <li>Fechados -  echo $resultadoFechados->fetchColumn(); ?></li>
-                        </ul>
-                    </nav>
-                </header> -->
     <div class="sidenav">
         <h2>Links Diretos</h2>
-        <a href="/pagina.php">Página Inicial</a>
+        <a href="home.php">Página Inicial</a>
         <a href="https://trello.com/b/5iTC7Pey/mortystock" target="_blank">Trello</a>
         <a href="logout.php" class="link" id="logout">Logout</a>
 
@@ -89,15 +43,16 @@ function atualizaTickets($conn)
                 ?>
             </div>
             <div class="charts">
-            <h1>Grafico 3</h1>
+                <h1>Grafico 3</h1>
             </div>
         </div>
+
         <!-- <h1>Últimos Tickets <i class="fas fa-sync-alt update-icon"></i></h1> -->
-        <div class="tabela-produtos-container">
+        <div id="demo_info" class="tabela-produtos-container">
             <h2>Produtos</h2>
 
 
-            <table id="tabelaProdutos">
+            <table id="tabela-produtos" class="display" style="width:100%">
                 <thead>
                     <tr>
                         <th>Código</th>
@@ -105,14 +60,10 @@ function atualizaTickets($conn)
                         <th>Setor</th>
                         <th>Estoque</th>
                         <th>Preço</th>
-                        <th>Custo</th>
+                        <th>Quantidade Ideal</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <?php
-                    atualizaTickets($conn);
-                    ?>
-                </tbody>
+
             </table>
 
         </div>
@@ -121,10 +72,16 @@ function atualizaTickets($conn)
             ?>
         </div>
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script>
-        // Seu código JavaScript aqui para atualizar os tickets quando o ícone for clicado
-        document.querySelector('.ticket-container').addEventListener('click', atualizaTickets($conn));
+        $(document).ready(function () {
+            $('#tabela-produtos').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "ajax": "../controllers/listar_produtos.php"
+            });
+        });
     </script>
 </body>
 
