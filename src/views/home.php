@@ -15,7 +15,7 @@ include_once '../controllers/banco.php';
     <link rel="stylesheet" href="../assets/css/app.css" type="text/css" />
     <!-- endbuild -->
     <link rel="stylesheet" href="../assets/css/font.css" type="text/css" />
-    <title>Sistema de Tickets</title>
+    <title>MortyStock</title>
 </head>
 
 <body>
@@ -74,15 +74,8 @@ include_once '../controllers/banco.php';
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#tabela-produtos').DataTable({
-                "processing": true,
-                "serverSide": true,
-                "ajax": "../controllers/listar_produtos.php"
-            });
-        });
-    </script>
+    
+    <script src="/src/controllers/customs.js"></script>
 </body>
 
 </html>

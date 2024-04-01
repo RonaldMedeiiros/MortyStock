@@ -145,7 +145,7 @@ nav li {
 }
 
 
-  table {
+  /* table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
@@ -166,5 +166,5 @@ nav li {
   }
   tr:nth-child(even) {
     background-color: #f2f2f2;
-  }
+  } */
 }
