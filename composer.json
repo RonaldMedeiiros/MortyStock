@@ -1,8 +1,8 @@
 {
-    "name": "ronal/php",
+    "name": "ronal/morty-stock",
     "autoload": {
         "psr-4": {
-            "Ronal\\Php\\": "src/"
+            "Ronal\\MortyStock\\": "src/"
         }
     },
     "authors": [

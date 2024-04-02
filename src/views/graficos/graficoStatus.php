@@ -1,53 +1,64 @@
 <?php
-include_once 'banco.php';
-//Tickets por Status
-$resolvido = "SELECT COUNT(*) FROM tickets WHERE statusticket = 'Resolvido'";
-$qtdResolvido = $conn->query($resolvido)->fetchColumn();
-$fechado = "SELECT COUNT(*) FROM tickets WHERE statusticket = 'Fechado'";
-$qtdFechado = $conn->query($fechado)->fetchColumn();
-$pendente = "SELECT COUNT(*) FROM tickets WHERE statusticket = 'Pendente'";
-$qtdPendente = $conn->query($pendente)->fetchColumn();
-$aberto = "SELECT COUNT(*) FROM tickets WHERE statusticket = 'Aberto'";
-$qtdAberto = $conn->query($aberto)->fetchColumn();
+include_once '../controllers/banco.php';
 
-// Agora o PHP terminou de buscar os dados e começamos a renderização HTML
+// Sua consulta SQL
+$resolvido = "SELECT setor, COUNT(*) AS total_produtos FROM produtos GROUP BY setor";
+
+// Executar a consulta SQL
+try {
+    $stmt = $conn->query($resolvido);
+
+    // Array para armazenar os resultados formatados
+    $data = array();
+
+    // Iterar sobre os resultados e formatar os dados
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $setor = $row['setor'];
+        $total_produtos = intval($row['total_produtos']); // Converter para inteiro
+
+        // Adicionar os dados formatados ao array
+        $data[] = array($setor, $total_produtos);
+    }
+
+    // Converter o array em formato JSON
+    $json_data = json_encode($data);
+} catch (PDOException $error) {
+    echo "Erro ao executar a consulta: " . $error->getMessage();
+}
 ?>
+
+<!-- HTML e JavaScript para renderizar o gráfico de barras do Google Charts -->
 <html>
   <head>
-    <meta charset="utf-8">
+    <!-- Carregar a biblioteca do Google Charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
+      // Carregar a biblioteca de visualização e definir o callback
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
+      // Função para desenhar o gráfico
       function drawChart() {
+        // Converter os dados JSON de volta para um array
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Setor');
+        data.addColumn('number', 'Total de Produtos');
+        data.addRows(<?php echo $json_data; ?>);
 
-        var data = google.visualization.arrayToDataTable([
-          ['Status', 'Quantidade'],
-          ['Aberto',  <?php echo $qtdAberto ?>],
-          ['Pendente',  <?php echo $qtdPendente ?>],
-          ['Resolvido',  <?php echo $qtdResolvido ?>]
-        ]);
-
+        // Opções do gráfico
         var options = {
-          backgroundColor: 'transparent', // Tornar o fundo transparente
-          width: 600, // Largura do gráfico em pixels
-          height: 400, // Altura do gráfico em pixels
-          chartArea: {
-            width: '70%', // Largura da área do gráfico em relação à largura total do gráfico
-            height: '70%', // Altura da área do gráfico em relação à altura total do gráfico
-            left: '5%', // Espaço à esquerda em relação à largura total do gráfico
-            top: '10%' // Espaço superior em relação à altura total do gráfico
-          }
+          width: 600,
+          height: 400
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
+        // Criar o gráfico de barras e renderizá-lo na div com o ID 'chart_div'
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
         chart.draw(data, options);
       }
-      
     </script>
   </head>
   <body>
-    <div id="piechart" style="height: 400px; width: 400px; margin: 0 auto;"></div>
+    <!-- Div para renderizar o gráfico -->
+    <div id="chart_div"></div>
   </body>
 </html>
