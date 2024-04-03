@@ -31,19 +31,22 @@ include_once '../controllers/banco.php';
     <div class='titulopagina'>
         <div class="charts-container">
             <div class="charts">
-                <h1>Grafico 1</h1>
+                <h1>Classe do Produto</h1>
                 <?php
-                //include 'graficoNivel.php'; 
+                include 'graficos/graficoClasse.php';
+                ?>                
+            </div>
+            <div class="charts">
+                <h1>Sistema de Entrega</h1>
+                <?php
+                include 'graficos/graficoSistematica.php';
                 ?>
             </div>
             <div class="charts">
-                <h1>Grafico 2</h1>
+                <h1>Total de Produtos por Setor</h1>
                 <?php
-                //include 'graficoStatus.php';
+                include 'graficos/graficoSetor.php';
                 ?>
-            </div>
-            <div class="charts">
-                <h1>Grafico 3</h1>
             </div>
         </div>
 
@@ -56,11 +59,14 @@ include_once '../controllers/banco.php';
                 <thead>
                     <tr>
                         <th>Código</th>
+                        <th>Código Loja</th>
                         <th>Produto</th>
+                        <th>Departamento</th>
                         <th>Setor</th>
                         <th>Estoque</th>
-                        <th>Preço</th>
-                        <th>Quantidade Ideal</th>
+                        <th>Classe do Produto</th>
+                        <th>Data Última Entrada</th>
+                        <th>Sistema de Entrega</th>
                     </tr>
                 </thead>
 

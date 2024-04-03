@@ -9,18 +9,14 @@ $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 try {
     $conn->exec("CREATE TABLE IF NOT EXISTS produtos (
         id INTEGER,
+        id_loja INTEGER,
+        departamento TEXT,
         setor TEXT,
-        status_produto TEXT,
+        sistema_entrega TEXT,
+        classe TEXT,
         nome_produto TEXT,
-        embalagem TEXT,
-        qtde_ideal INTEGER,
-        data_ult_entr DATE,
-        qtde_ult_entr INTEGER,
-        estoque INTEGER,
-        preco_custo REAL,
-        preco_venda REAL,
-        qtde_vendida INTEGER,
-        tp_etiq TEXT
+        data_ult_entr DATE, 
+        estoque INTEGER
     )");
     echo "Tabela 'PRODUTOS' criada com sucesso!\n";
 
@@ -35,3 +31,10 @@ try {
 } catch (PDOException $e) {
     echo "Erro ao criar as tabelas: " . $e->getMessage();
 }
+
+
+// Para importar o arquivo CSV entra no caminho do banco, depois faz o import .. 
+// sqlite3 nome_do_banco.sqlite
+// .mode csv
+// .separator ";"
+// .import "C:/Users/ronal/Documents/smg13.csv" nome_da_tabela
