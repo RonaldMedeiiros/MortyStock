@@ -2,16 +2,7 @@
 body {
     background-color: #b9b9b9;
 
-/* Estilo para os containers */
-.ticket {
-    background-color: white; /* Cor de fundo dos containers */
-    border-radius: 10px; /* Bordas arredondadas */
-    padding: 20px; /* Espaçamento interno */
-    margin: 10px; /* Espaçamento externo */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra leve */
-    font-family: "Arial", sans-serif; /* Fonte */
-    font-weight: bold; /* Peso da fonte */
-}
+
 
 /* Estilo para o título */
 h1 {
@@ -81,13 +72,6 @@ h1 {
 .charts h1 {
     text-align: center;
 }
-/* Estilos CSS para o container de tickets usando CSS Grid */
-.ticket-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 colunas */
-    grid-template-rows: repeat(3, 1fr); /* 3 linhas */
-}
-
 
 /* Estilo para o container do iframe na barra lateral */
 iframe {
@@ -146,7 +130,7 @@ nav li {
 
 
 
-  /* table {
+   table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
@@ -167,5 +151,5 @@ nav li {
   }
   tr:nth-child(even) {
     background-color: #f2f2f2;
-  } */
+  } 
 }

@@ -37,21 +37,15 @@ include_once '../controllers/banco.php';
                 ?>                
             </div>
             <div class="charts">
-                <h1>Sistema de Entrega</h1>
+                <h1>Grafico 2</h1>
                 <?php
                 include 'graficos/graficoSistematica.php';
                 ?>
             </div>
             <div class="charts">
-<<<<<<< HEAD
                 <h1>Total de Produtos por Setor</h1>
                 <?php
                 include 'graficos/graficoSetor.php';
-=======
-                <h1>Contagem de Produtos por Setor</h1>
-                <?php
-                include 'graficos/graficoStatus.php';
->>>>>>> 166d826cf67ba4e0b92d9a9fca8e132a097cfb59
                 ?>
             </div>
         </div>
