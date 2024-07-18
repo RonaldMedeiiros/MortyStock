@@ -14,11 +14,22 @@ Para executar MortyStock, você precisará de:
 1. Certifique-se de que o PHP e o MySQL estão instalados e configurados em seu ambiente de desenvolvimento.
 2. Clone ou baixe o código-fonte do MortyStock para o seu ambiente local.
 3. Configure o acesso ao banco de dados editando o arquivo de configuração do PDO_MySQL com suas credenciais de banco de dados.
-4. Inicie o servidor PHP no vscode com o comando:
+4. Configurar o .env com as informações do banco. Está no Trello MortyStock
+```bash 
+DB_HOST='IP'
+DB_USERNAME='USERNAME'
+DB_PASSWORD='PASSWORD'
+DB_NAME='NOMEBANCO'
+``` 
+4. Rodar o comando:
+```bash 
+composer install
+``` 
+5. Inicie o servidor PHP no vscode com o comando:
 ```bash 
 php -S localhost:3333
 ``` 
-5. Acesse o sistema via navegador através do endereço: http://localhost:3333
+6. Acesse o sistema via navegador através do endereço: http://localhost:3333
 
 ## Funcionalidades
 Cadastro de Produtos: Permite inserir novos produtos no estoque, especificando detalhes como nome, setor, status, e outros atributos importantes.
