@@ -9,18 +9,13 @@ Para executar MortyStock, você precisará de:
 * PHP (com suporte ao PDO_MySQL para integração com banco de dados)
 * Servidor local ou de hospedagem que suporte PHP
 * Banco de dados MySQL
+* Instalar driver sqlite (linux sudo apt-get install php-sqlite3)
 
 ## Instalação
 1. Certifique-se de que o PHP e o MySQL estão instalados e configurados em seu ambiente de desenvolvimento.
 2. Clone ou baixe o código-fonte do MortyStock para o seu ambiente local.
 3. Configure o acesso ao banco de dados editando o arquivo de configuração do PDO_MySQL com suas credenciais de banco de dados.
-4. Configurar o .env com as informações do banco. Está no Trello MortyStock
-```bash 
-DB_HOST='IP'
-DB_USERNAME='USERNAME'
-DB_PASSWORD='PASSWORD'
-DB_NAME='NOMEBANCO'
-``` 
+4. Configurar o .env para ler o banco sem problema.
 4. Rodar o comando:
 ```bash 
 composer install
