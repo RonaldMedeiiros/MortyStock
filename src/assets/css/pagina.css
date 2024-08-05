@@ -56,12 +56,13 @@ h1 {
 }
 
 .charts {
-    background-color: #a1a1a1;
+    background-color: #727171;
     padding: 10px;
     border-radius: 10px; /* Bordas arredondadas */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra leve */
     font-family: "Arial", sans-serif; /* Fonte */
     font-weight: bold; /* Peso da fonte */
+    margin-top: -50px;
     width: 400px;
     height: 450px;
 }
@@ -135,7 +136,7 @@ nav li {
   table,
   th,
   td {
-    border: 1px solid #ddd;
+    border: 1px solid #585757;
   }
   th,
   td {
@@ -147,6 +148,6 @@ nav li {
     color: rgb(8, 8, 8);
   }
   tr:nth-child(even) {
-    background-color: #dbdada;
+    background-color: #5c5b5b;
   } 
 }
