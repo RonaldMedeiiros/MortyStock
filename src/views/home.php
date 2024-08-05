@@ -37,7 +37,7 @@ include_once '../controllers/banco.php';
                 ?>                
             </div>
             <div class="charts">
-                <h1>Grafico 2</h1>
+                <h1 >Sistemática</h1>
                 <?php
                 include 'graficos/graficoSistematica.php';
                 ?>

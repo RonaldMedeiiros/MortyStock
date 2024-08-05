@@ -44,6 +44,7 @@ try {
         data.addColumn('string', 'Classes');
         data.addColumn('number', 'Total de Cada Classe');
         data.addRows(<?php echo $json_data; ?>);
+        
 
         // Opções do gráfico
         var options = {
@@ -63,6 +64,6 @@ try {
   </head>
   <body>
     <!-- Div para renderizar o gráfico -->
-    <div id="columnchart_material_entradas"style="margin-top: -60px; margin-left: -55px;"></div>
+    <div id="columnchart_material_entradas" style="margin-top: -60px; margin-left: -55px;"></div>
   </body>
 </html>

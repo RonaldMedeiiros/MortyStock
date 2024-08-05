@@ -2,7 +2,11 @@
 include_once '../controllers/banco.php';
 
 // Sua consulta SQL
-$resolvido = "SELECT setor, COUNT(*) AS total_setor FROM produtos GROUP BY setor";
+$resolvido = "SELECT setor, COUNT(*) AS total_setor FROM produtos GROUP BY setor ORDER BY total_setor DESC limit 5";
+
+function gerarCorAleatoriaSetor() {
+  return 'color: #' . sprintf('%06X', mt_rand(0, 0xFFFFFF));
+}
 
 // Executar a consulta SQL
 try {
@@ -15,9 +19,10 @@ try {
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $setor = $row['setor'];
         $total_setor = intval($row['total_setor']); // Converter para inteiro
+        $cor = gerarCorAleatoriaSetor(); // Gerar uma cor aleatória
 
         // Adicionar os dados formatados ao array
-        $data[] = array($setor, $total_setor);
+        $data[] = array($setor, $total_setor, $cor);
     }
 
     // Converter o array em formato JSON
@@ -43,6 +48,7 @@ try {
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Setor');
         data.addColumn('number', 'Total por Setor');
+        data.addColumn({type: 'string', role: 'style'}); // Adicionar a cor como uma coluna adicional
         data.addRows(<?php echo $json_data; ?>);
 
         // Opções do gráfico
@@ -50,7 +56,8 @@ try {
           width: 450,
           height: 500,          
           legend: 'none',          
-          backgroundColor: 'transparent'
+          backgroundColor: 'transparent',
+          colors: ['#4285F4', '#EA4335', '#FBBC05', '#34A853', '#FF6D01']
         };
 
         // Criar o gráfico de barras e renderizá-lo na div com o ID 'chart_div'

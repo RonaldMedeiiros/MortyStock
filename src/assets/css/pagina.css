@@ -1,8 +1,6 @@
 /* Estilo para o fundo cinza claro */
 body {
-    background-color: #b9b9b9;
-
-
+    background-color: #9b9b9b;
 
 /* Estilo para o título */
 h1 {
@@ -58,9 +56,8 @@ h1 {
 }
 
 .charts {
-    background-color: #f0f0f0;
+    background-color: #a1a1a1;
     padding: 10px;
-    background-color: white; /* Cor de fundo dos containers */
     border-radius: 10px; /* Bordas arredondadas */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra leve */
     font-family: "Arial", sans-serif; /* Fonte */
@@ -146,10 +143,10 @@ nav li {
     padding: 8px;
   }
   th {
-    background-color: #f5cb5c;
+    background-color: #7e7e7e;
     color: rgb(8, 8, 8);
   }
   tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #dbdada;
   } 
 }
