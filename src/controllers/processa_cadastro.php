@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $dataCriacao = date('Y-m-d H:i:s');
     $senhaHash = md5($senha);
 
-    // Inserir usuário no banco de dados
+    
     $stmt = $conn->prepare("INSERT INTO usuarios (nome, email, senha, data_criacao) VALUES (:nome, :email, :senha, :criado_em)");
     $stmt->bindParam(':nome', $nome);
     $stmt->bindParam(':email', $email);

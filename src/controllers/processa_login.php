@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $senha = $_POST['senha'];
     $senhaHash = md5($senha);
 
-    // Verificar as credenciais no banco de dados
+    
     $stmt = $conn->prepare("SELECT * FROM usuarios WHERE email = :email AND senha = :senha");
     $stmt->bindParam(':email', $email);
     $stmt->bindParam(':senha', $senhaHash);
@@ -14,13 +14,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user) {
-        // Login bem-sucedido
         session_start();
         $_SESSION['user_id'] = $user['id'];
         header('Location: /src/views/home.php');
         exit();
     } else {
-        // Login falhou
         echo "Usuário inexistente";
         header('Location: /src/views/login.php');
         exit();

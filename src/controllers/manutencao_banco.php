@@ -2,7 +2,6 @@
 
 $dbPath = __DIR__ . '/banco.sqlite';
 
-// Cria uma conexão PDO com o banco de dados SQLite
 $conn = new PDO('sqlite:' . $dbPath);
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

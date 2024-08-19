@@ -16,7 +16,6 @@ $colunas = [
     8 => 'sistema_entrega'
 ];
 
-// Obtendo a quantidade de ids no banco
 $query_qtd_produtos = "SELECT COUNT(id) AS qtd_produtos FROM produtos";
 
 if(!empty($dados_requisicao['search']['value'])){
@@ -30,7 +29,7 @@ if(!empty($dados_requisicao['search']['value'])){
     $query_qtd_produtos .= " OR data_ult_entr LIKE :data_ult_entr ";
     $query_qtd_produtos .= " OR sistema_entrega LIKE :sistema_entrega ";
 }
-//preparar a query
+
 $result_qtd_produtos = $conn->prepare($query_qtd_produtos);
 if(!empty($dados_requisicao['search']['value'])){
     $valor_pesq = "%" . $dados_requisicao['search']['value'] ."%";
@@ -47,10 +46,10 @@ if(!empty($dados_requisicao['search']['value'])){
 $result_qtd_produtos->execute();
 $row_qtd_produtos = $result_qtd_produtos->fetch(PDO::FETCH_ASSOC);
 
-// Recuperando os registros do banco
+
 $query_produtos = " SELECT * FROM produtos ";
 
-// acessa o if quando há parâmetros .. 
+
 if(!empty($dados_requisicao['search']['value'])){
     $query_produtos .= " WHERE id LIKE :id ";
     $query_produtos .= " OR id_loja LIKE :id_loja ";
@@ -99,13 +98,13 @@ while ($row_produtos = $result_produtos->fetch(PDO::FETCH_ASSOC)) {
     $dados_produtos[] = $registro;
 }
 
-// Criando o obj de informações a serem retornadas pelo JS
+
 $resultado = [
-    "draw" => intval($dados_requisicao['draw']), //para cada requisição é enviado um número como parâmetro
-    "recordsTotal" => intval($row_qtd_produtos['qtd_produtos']), //qtd de registros que há na tabela
+    "draw" => intval($dados_requisicao['draw']),
+    "recordsTotal" => intval($row_qtd_produtos['qtd_produtos']),
     "recordsFiltered" => intval($row_qtd_produtos['qtd_produtos']),
     "data" => $dados_produtos,
 ];
 
-//retornando os dados em forma de Json
+
 echo json_encode($resultado);

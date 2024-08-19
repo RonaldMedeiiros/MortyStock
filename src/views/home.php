@@ -54,7 +54,6 @@ include_once '../controllers/banco.php';
         <div id="demo_info" class="tabela-produtos-container">
             <h2>Produtos</h2>
 
-
             <table id="tabela-produtos" class="display" style="width:100%">
                 <thead>
                     <tr>
