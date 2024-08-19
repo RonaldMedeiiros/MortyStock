@@ -15,7 +15,7 @@
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="password" name="senha" placeholder="Senha" required>
                 <button type="submit">Entrar</button><br>
-                <button><a href="/src/views/cadastro.php" class="link">Criar uma conta</a></button>
+                <button><a href="/src/views/cadastroUsuario.php" class="link">Criar uma conta</a></button>
             </form>
         </div>
     </div>
