@@ -95,8 +95,14 @@ while ($row_produtos = $result_produtos->fetch(PDO::FETCH_ASSOC)) {
     $registro[] = $classe;
     $registro[] = $data_ult_entr;
     $registro[] = $sistema_entrega;
-    $registro[] = //'<button class="btn btn-warning btn-edit" data-id="' . $id . '" data-id_loja="' . $id_loja . '">Editar</button>
-               '<button class="btn btn-danger btn-delete" data-id="' . $id . '" data-id_loja="' . $id_loja . '">Excluir</button>';
+    $registro[] = '<div style="display: flex; align-items: center;">
+                   <button class="btn btn-warning btn-sm btn-edit" style="color: white; background-color: #ffc107; border: none; border-radius: 4px; padding: 5px 10px; font-size: 0.9rem; margin-right: 5px;" data-id="' . $id . '" data-id_loja="' . $id_loja . '">
+                       <i class="fas fa-edit"></i> Editar
+                   </button>
+                   <button class="btn btn-danger btn-sm btn-delete" style="color: white; background-color: #dc3545; border: none; border-radius: 4px; padding: 5px 10px; font-size: 0.9rem;" data-id="' . $id . '" data-id_loja="' . $id_loja . '">
+                       <i class="fas fa-trash-alt"></i> Excluir
+                   </button>
+               </div>';
 $dados_produtos[] = $registro;
 
 }

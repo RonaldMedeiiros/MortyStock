@@ -145,8 +145,12 @@ include_once '../controllers/banco.php';
                 <input type="text" class="form-control" id="sistema_entrega" name="sistema_entrega" placeholder="Sistema de Entrega">
             </div>
         </div>
-
-        <button type="submit" class="btn btn-outline-primary">Cadastrar</button>
+        <input type="hidden" id="edit-mode" name="edit-mode" value="false">
+        <input type="hidden" id="produto-id" name="produto-id" value="">
+        <!-- Botão para Cadastrar -->
+        <button type="submit" class="btn btn-outline-primary" id="btn-cadastrar">Cadastrar</button>
+        <!-- Botão para Atualizar -->
+        <button type="button" class="btn btn-outline-success d-none" id="btn-atualizar">Atualizar</button>
     </form>
 </div>
 

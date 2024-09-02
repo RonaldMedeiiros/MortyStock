@@ -1,27 +1,30 @@
 <?php
 include_once '../controllers/banco.php';
 
-$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-$id_loja = filter_input(INPUT_GET, 'id_loja', FILTER_SANITIZE_NUMBER_INT);
-if ($id && $id_loja) {
-    try {
-        $query = "SELECT * FROM produtos WHERE id = :id AND id_loja = :id_loja";
-        $stmt = $conn->prepare($query);
+$id = $_GET['id'];
+$id_loja = $_GET['id_loja'];
 
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->bindParam(':id_loja', $id_loja, PDO::PARAM_INT);
-        
-        $stmt->execute();
+// Log dos parâmetros recebidos
+error_log("ID: $id, ID Loja: $id_loja");
 
-        if ($stmt->rowCount() > 0) {
-            $produto = $stmt->fetch(PDO::FETCH_ASSOC);
-            echo json_encode(['status' => true, 'produto' => $produto]);
-        } else {
-            echo json_encode(['status' => false, 'msg' => 'Produto não encontrado.']);
-        }
-    } catch (Exception $e) {
-        echo json_encode(['status' => false, 'msg' => 'Erro no servidor: ' . $e->getMessage()]);
-    }
+// Consulta SQL para buscar o produto
+$sql = "SELECT * FROM produtos WHERE id = :id AND id_loja = :id_loja";
+$stmt = $conn->prepare($sql);
+$stmt->bindValue(':id', $id, PDO::PARAM_INT);
+$stmt->bindValue(':id_loja', $id_loja, PDO::PARAM_INT);
+$stmt->execute();
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if ($result) {
+    error_log("Produto encontrado: " . print_r($result, true)); // Adicionado para depuração
+    header('Content-Type: application/json');
+    echo json_encode(['status' => true, 'produto' => $result]);
 } else {
-    echo json_encode(['status' => false, 'msg' => 'Parâmetros inválidos.']);
+    // Log da falha na busca do produto
+    error_log("Produto não encontrado para ID: $id, ID Loja: $id_loja");
+    header('Content-Type: application/json');
+    echo json_encode(['status' => false, 'msg' => 'Produto não encontrado.']);
 }
+
+$stmt->closeCursor();
+$conn = null;

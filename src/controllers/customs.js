@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('#tabela-produtos').DataTable({
+    const table = $('#tabela-produtos').DataTable({
         "processing": true,
         "serverSide": true,
         "ajax": "../controllers/listar_produtos.php",
@@ -7,6 +7,7 @@ $(document).ready(function () {
             "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/pt-BR.json"
         }
     });
+
     // Evento para o botão de edição
     $('#tabela-produtos').on('click', '.btn-edit', function () {
         const id = $(this).data('id');
@@ -27,11 +28,59 @@ $(document).ready(function () {
                     $('#estoque').val(data.produto.estoque);
                     $('#classe').val(data.produto.classe);
                     $('#sistema_entrega').val(data.produto.sistema_entrega);
+
+                    // Alternar os botões
+                    $('#btn-cadastrar').addClass('d-none');
+                    $('#btn-atualizar').removeClass('d-none');
+
+                    // Definir modo de edição
+                    $('#edit-mode').val('true');
+                    $('#produto-id').val(data.produto.id);
+
+                    // Mostrar o modal
                     $('#cadProdutoModal').modal('show');
                 } else {
-                    alert('Produto não encontradoassadfa!');
+                    alert('Produto não encontrado!');
                 }
             });
+    });
+
+    // Evento para o botão de atualização
+    $('#btn-atualizar').on('click', function () {
+        const id = $('#produto-id').val();
+        const formData = {
+            id: $('#id').val(),
+            id_loja: $('#id_loja').val(),
+            nome_produto: $('#nome_produto').val(),
+            departamento: $('#departamento').val(),
+            setor: $('#setor').val(),
+            estoque: $('#estoque').val(),
+            classe: $('#classe').val(),
+            sistema_entrega: $('#sistema_entrega').val()
+        };
+
+        // Enviar dados de atualização via AJAX
+        fetch(`../controllers/atualizar_produto.php`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status) {
+                alert('Produto atualizado com sucesso!');
+                $('#cadProdutoModal').modal('hide');
+                table.ajax.reload(); // Recarregar a tabela
+            } else {
+                alert('Erro ao atualizar o produto.');
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Erro ao processar a atualização.');
+        });
     });
 
     // Evento para o botão de exclusão
@@ -41,55 +90,57 @@ $(document).ready(function () {
 
         if (confirm('Tem certeza que deseja excluir este produto?')) {
             fetch(`../controllers/excluir_produto.php?id=${id}&id_loja=${id_loja}`, {
-                method: 'DELETE'
+                method: 'GET' // ou 'DELETE', dependendo de como o servidor está configurado
             })
             .then(response => response.json())
             .then(data => {
                 if (data.status) {
                     alert('Produto excluído com sucesso!');
-                    table.ajax.reload(); // Recarrega a tabela
+                    table.ajax.reload(); // Recarregar a tabela
                 } else {
                     alert('Erro ao excluir o produto.');
                 }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Erro ao processar a exclusão.');
             });
         }
     });
-});
 
-const formNewProduct = document.getElementById('form-cad-produto');
-const alertMsg = document.getElementById('alert-msg');
-const fecharModalProduct = new bootstrap.Modal(document.getElementById('cadProdutoModal'));
+    // Resetar o modal ao abrir para cadastro
+    $('#cadProdutoModal').on('hidden.bs.modal', function () {
+        $('#form-cad-produto')[0].reset();
+        $('#btn-cadastrar').removeClass('d-none');
+        $('#btn-atualizar').addClass('d-none');
+        $('#edit-mode').val('false');
+    });
 
-if (formNewProduct) {
-    formNewProduct.addEventListener('submit', async (e) => {
+    // Evento para o formulário de cadastro
+    $('#form-cad-produto').on('submit', function (e) {
         e.preventDefault();
-        const formData = new FormData(formNewProduct);
+        const formData = new FormData(this);
+        const isEditMode = $('#edit-mode').val() === 'true';
 
-        try {
-            const response = await fetch('../controllers/cadastrar_produto.php', {
-                method: 'POST',
-                body: formData
-            });
+        let url = isEditMode ? '../controllers/atualizar_produto.php' : '../controllers/cadastrar_produto.php';
 
-            const data = await response.json();
-
-            // Exibe a mensagem retornada
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
             alertMsg.classList.remove('d-none');
             alertMsg.innerHTML = data.msg;
 
             if (data.status) {
-                formNewProduct.reset();
-                fecharModalProduct.hide();
-                listarTabela = $('#tabela-produtos').DataTable();
-                listarTabela.draw();
+                $('#cadProdutoModal').modal('hide');
+                table.ajax.reload();
             }
-
-        } catch (error) {
+        })
+        .catch(error => {
             alertMsg.classList.remove('d-none');
-            alertMsg.innerHTML = '<div class="alert alert-danger" role="alert">Ocorreu um erro ao tentar cadastrar o produto.</div>';
-        }
+            alertMsg.innerHTML = '<div class="alert alert-danger" role="alert">Erro ao processar a solicitação.</div>';
+        });
     });
-}
-
-    
-
+});
