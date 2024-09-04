@@ -3,6 +3,8 @@ include_once '../controllers/banco.php';
 
 $dados_requisicao = $_REQUEST;
 
+$dados_produtos = [];
+
 //lista de colunas na tabela
 $colunas = [
     0 => 'id',

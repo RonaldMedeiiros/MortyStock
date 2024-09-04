@@ -45,15 +45,15 @@ try {
         data.addColumn('number', 'Total de Cada Classe');
         data.addRows(<?php echo $json_data; ?>);
         
-
-        // Opções do gráfico
+        // Opções do gráfico com a paleta de cores fornecida
         var options = {
           width: 500,
           height: 500,
           pieHole: 0.4,
           legend: 'none',
           pieSliceText: 'label',
-          backgroundColor: 'transparent'
+          backgroundColor: 'transparent',
+          colors: ['#11091a', '#1d192d', '#2a263f', '#2f2f4d', '#4a4f5a', '#767a81', '#bab195']
         };
 
         // Criar o gráfico de barras e renderizá-lo na div com o ID 'chart_div'
@@ -64,6 +64,6 @@ try {
   </head>
   <body>
     <!-- Div para renderizar o gráfico -->
-    <div id="columnchart_material_entradas" style="margin-top: -60px; margin-left: -55px;"></div>
+    <div id="columnchart_material_entradas" style="margin-top: -60px;"></div>
   </body>
 </html>

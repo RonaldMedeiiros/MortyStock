@@ -1,11 +1,18 @@
-/* Estilo para o fundo cinza claro */
+/* Estilo para o fundo cinza escuro */
 body {
-    background-color: #9b9b9b;
+    background-color: #11091a; /* color1 */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 
 /* Estilo para o título */
 h1 {
     font-family: "Arial", sans-serif; /* Fonte */
     font-weight: bold; /* Peso da fonte */
+    color: #bab195; /* color5 */
 }
 
 /* Estilos CSS para a barra lateral */
@@ -15,7 +22,7 @@ h1 {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #333;
+    background-color: #2f2f4d; /* color2 */
     padding-top: 20px;
 }
 
@@ -23,18 +30,17 @@ h1 {
     padding: 15px 35px;
     text-decoration: none;
     font-size: 18px;
-    color: white;
+    color: #bab195; /* color5 */
     display: block;
 }
 
-
-
 .sidenav a:hover {
-    background-color: #555;
+    background-color: #626970; /* color3 */
 }
 
 .sidenav h2 {
-    color: white;
+    color: #bab195; /* color5 */
+    margin-top: 40px;
 }
 
 .update-icon {
@@ -42,33 +48,37 @@ h1 {
     margin-right: 5px; /* Espaçamento à direita do ícone (opcional) */
 }
 
-.titulopagina{
+.titulopagina {
     margin-left: 270px; /* Deve ser maior que a largura da barra lateral */
     padding: 20px;
     z-index: 1; /* Defina um valor de z-index menor */
+    color: #bab195; /* color5 */
+    flex: 1; /* Permite que o conteúdo principal cresça e ocupe o espaço disponível */
+    padding-bottom: 60px; /* Espaço para o rodapé */
 }
 
 .charts-container {
     margin-top: 40px;
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 colunas */
-    
+    gap: 20px; /* Espaçamento entre os itens */
 }
 
 .charts {
-    background-color: #727171;
-    padding: 10px;
+    background-color: #626970; /* color3 */
+    padding: 20px;
     border-radius: 10px; /* Bordas arredondadas */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra leve */
     font-family: "Arial", sans-serif; /* Fonte */
     font-weight: bold; /* Peso da fonte */
-    margin-top: -50px;
-    width: 400px;
+    width: 100%;
     height: 450px;
+    color: #bab195; /* color5 */
 }
 
 .charts h1 {
     text-align: center;
+    color: #bab195; /* color4 */
 }
 
 /* Estilo para o container do iframe na barra lateral */
@@ -82,23 +92,24 @@ header {
     top: 0; /* Coloca o cabeçalho no topo da página */
     width: 100%; /* Largura na tela toda */
     height: 50px; /* Altura de 50px */
-    background-color: #333; /* Fundo cinza escuro */
-    color: #fff; /* Cor do texto branca */
+    background-color: #2f2f4d; /* color2 */
+    color: #bab195; /* color5 */
     font-family: "Arial", sans-serif; /* Fonte */
     z-index: 2; /* Defina um valor de z-index maior */
 }
 
 /* Estilo para o título no cabeçalho */
-h2 {
+header h2 {
     margin-left: 10px; 
-    margin-top: 40px;
+    margin-top: 10px;
+    color: #bab195; /* color4 */
 }
 
 /* Estilo para a lista de navegação no cabeçalho */
 nav ul {
     text-align: center;
     list-style: none; /* Remove marcadores de lista */
-    margin-left: 270px; /* Remove margens padrão */
+    margin: 0; /* Remove margens padrão */
     padding: 0; /* Remove preenchimento padrão */
 }
 
@@ -109,7 +120,7 @@ nav li {
 
 .link {
     cursor: pointer;
-    color: #ffffff; /* cor do texto do link */
+    color: #bab195; /* color5 */
     text-decoration: none;
 }
 
@@ -122,32 +133,125 @@ nav li {
     padding: 15px 25px;
     text-decoration: none;
     font-size: 15px;
-    color: white;
+    color: #bab195; /* color5 */
 }
 
-
-
-
-   table {
+table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-  }
-  table,
-  th,
-  td {
-    border: 1px solid #585757;
-  }
-  th,
-  td {
+    background-color: #4a4f5a; /* penúltima cor da paleta */
+}
+
+table, th, td {
+    border: 1px solid #2f2f4d; /* quarta cor da paleta */
+}
+
+th, td {
     text-align: left;
     padding: 8px;
-  }
-  th {
-    background-color: #7e7e7e;
-    color: rgb(8, 8, 8);
-  }
-  tr:nth-child(even) {
-    background-color: #5c5b5b;
-  } 
+    color: #11091a; /* primeira cor da paleta para o texto dentro da tabela */
+}
+
+th {
+    background-color: #2a263f; /* terceira cor da paleta */
+    color: #bab195; /* última cor da paleta para o texto do cabeçalho da tabela */
+}
+
+tr:nth-child(even) {
+    background-color: #1d192d; /* segunda cor da paleta */
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    .sidenav {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .sidenav a {
+        float: left;
+        padding: 15px;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .sidenav a:hover {
+        background-color: #2f2f4d; /* quarta cor da paleta */
+    }
+
+    .titulopagina {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .charts-container {
+        grid-template-columns: 1fr; /* 1 coluna */
+        gap: 10px; /* Espaçamento entre os itens */
+    }
+
+    header {
+        height: auto;
+        padding: 10px;
+    }
+
+    header h2 {
+        margin: 0;
+        text-align: center;
+    }
+
+    nav ul {
+        padding: 10px;
+    }
+
+    nav li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    table, thead, tbody, th, td, tr {
+        display: block; /* Exibe os elementos como blocos */
+    }
+
+    th, td {
+        padding: 10px; /* Ajusta o padding */
+        text-align: right; /* Alinha o texto à direita */
+        position: relative; /* Necessário para o pseudo-elemento */
+    }
+
+    th::before, td::before {
+        content: attr(data-label); /* Usa o atributo data-label como conteúdo */
+        position: absolute;
+        left: 10px; /* Alinha o texto à esquerda */
+        white-space: nowrap; /* Impede quebra de linha */
+        font-weight: bold; /* Negrito para os rótulos */
+    }
+
+    th, td {
+        border: none; /* Remove as bordas */
+        border-bottom: 1px solid #ddd; /* Adiciona uma borda inferior */
+    }
+
+    tr {
+        margin-bottom: 10px; /* Espaçamento entre as linhas */
+    }
+
+    thead {
+        display: none; /* Esconde o cabeçalho */
+    }
+}
+
+footer {
+    position: fixed;
+    bottom: 0; /* Coloca o rodapé na parte inferior da página */
+    width: 100%; /* Largura na tela toda */
+    height: 50px; /* Altura de 50px */
+    background-color: #2f2f4d; /* color2 */
+    color: #bab195; /* color5 */
+    font-family: "Arial", sans-serif; /* Fonte */
+    text-align: center; /* Alinha o texto ao centro */
+    padding: 10px; /* Espaçamento interno de 10px */
+    z-index: 1000; /* Garante que o rodapé fique na frente do conteúdo */
 }

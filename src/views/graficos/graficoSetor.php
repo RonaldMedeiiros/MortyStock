@@ -4,9 +4,8 @@ include_once '../controllers/banco.php';
 // Sua consulta SQL
 $resolvido = "SELECT setor, COUNT(*) AS total_setor FROM produtos GROUP BY setor ORDER BY total_setor DESC limit 5";
 
-function gerarCorAleatoriaSetor() {
-  return 'color: #' . sprintf('%06X', mt_rand(0, 0xFFFFFF));
-}
+// Paleta de cores fornecida
+$cores = ['#11091a', '#1d192d', '#2a263f', '#2f2f4d', '#4a4f5a', '#767a81', '#bab195'];
 
 // Executar a consulta SQL
 try {
@@ -14,15 +13,17 @@ try {
 
     // Array para armazenar os resultados formatados
     $data = array();
+    $index = 0;
 
     // Iterar sobre os resultados e formatar os dados
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $setor = $row['setor'];
         $total_setor = intval($row['total_setor']); // Converter para inteiro
-        $cor = gerarCorAleatoriaSetor(); // Gerar uma cor aleatória
+        $cor = $cores[$index % count($cores)]; // Usar a cor da paleta
 
         // Adicionar os dados formatados ao array
-        $data[] = array($setor, $total_setor, $cor);
+        $data[] = array($setor, $total_setor, 'color: ' . $cor);
+        $index++;
     }
 
     // Converter o array em formato JSON
@@ -54,13 +55,30 @@ try {
         // Opções do gráfico
         var options = {
           width: 450,
-          height: 500,          
-          legend: 'none',          
+          height: 400,
+          legend: { position: 'none' },
           backgroundColor: 'transparent',
-          colors: ['#4285F4', '#EA4335', '#FBBC05', '#34A853', '#FF6D01']
+          hAxis: {
+            textStyle: {
+              color: '#bab195', // Cor mais forte para as legendas
+              bold: true
+            },
+            gridlines: { color: 'transparent' } // Remove as grades do fundo
+          },
+          vAxis: {
+            textStyle: {
+              color: '#bab195', // Cor mais forte para as legendas
+              bold: true
+            },
+            gridlines: { color: 'transparent' } // Remove as grades do fundo
+          },
+          chartArea: {
+            width: '80%',
+            height: '70%'
+          }
         };
 
-        // Criar o gráfico de barras e renderizá-lo na div com o ID 'chart_div'
+        // Criar o gráfico de barras e renderizá-lo na div com o ID 'columnchart_material_setor'
         var chart = new google.visualization.BarChart(document.getElementById('columnchart_material_setor'));
         chart.draw(data, options); 
       }

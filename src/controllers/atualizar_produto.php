@@ -2,7 +2,7 @@
 include_once '../controllers/banco.php';
 
 // Receber os dados enviados pelo AJAX
-$dados = json_decode(file_get_contents('php://input'), true);
+$dados = $_POST;
 
 // Sanitização e validação dos dados recebidos
 $id = filter_var($dados['id'], FILTER_SANITIZE_NUMBER_INT);
@@ -16,8 +16,9 @@ $sistema_entrega = filter_var($dados['sistema_entrega'], FILTER_SANITIZE_STRING)
 
 if ($id && $id_loja) {
     // Atualização no banco de dados
-    $query = "UPDATE produtos SET id_loja = :id_loja, nome_produto = :nome_produto, departamento = :departamento, 
-              setor = :setor, estoque = :estoque, classe = :classe, sistema_entrega = :sistema_entrega WHERE id = :id";
+    $query = "UPDATE produtos SET nome_produto = :nome_produto, departamento = :departamento, 
+              setor = :setor, estoque = :estoque, classe = :classe, sistema_entrega = :sistema_entrega 
+              WHERE id = :id AND id_loja = :id_loja";
     $stmt = $conn->prepare($query);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->bindParam(':id_loja', $id_loja, PDO::PARAM_INT);
