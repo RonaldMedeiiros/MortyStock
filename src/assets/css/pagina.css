@@ -255,3 +255,10 @@ footer {
     padding: 10px; /* Espaçamento interno de 10px */
     z-index: 1000; /* Garante que o rodapé fique na frente do conteúdo */
 }
+
+.toast {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 2000; /* Garante que a notificação fique na frente de todos os outros elementos */
+}
