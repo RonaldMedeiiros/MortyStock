@@ -1,19 +1,22 @@
-# Use uma imagem base do PHP com suporte a SQLite
+# Use uma imagem base do PHP com suporte a Apache
 FROM php:8.1-apache
 
-# Instale extensões necessárias para SQLite e outras dependências
-RUN docker-php-ext-install pdo pdo_sqlite
+# Atualizar pacotes e instalar dependências necessárias para o SQLite
+RUN apt-get update && apt-get install -y \
+    sqlite3 \
+    libsqlite3-dev \
+    && docker-php-ext-install pdo pdo_sqlite
 
-# Instale o Composer
+# Instalar o Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Configure o diretório da aplicação
+# Configurar o diretório da aplicação
 WORKDIR /var/www/html
 
-# Copie os arquivos da aplicação para o container
+# Copiar os arquivos da aplicação para o container
 COPY . .
 
-# Instale as dependências do projeto
+# Instalar dependências do Composer
 RUN composer install
 
 # Configurar variáveis de ambiente
