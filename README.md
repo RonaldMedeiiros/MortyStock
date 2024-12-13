@@ -24,7 +24,9 @@ composer install
 ```bash 
 php -S localhost:3333
 ``` 
-6. Acesse o sistema via navegador através do endereço: http://localhost:3333
+6. Criar um arquivo .env
+
+7. Acesse o sistema via navegador através do endereço: http://localhost:3333
 
 ## Funcionalidades
 Cadastro de Produtos: Permite inserir novos produtos no estoque, especificando detalhes como nome, setor, status, e outros atributos importantes.
