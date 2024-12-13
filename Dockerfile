@@ -23,7 +23,8 @@ COPY . .
 RUN composer install
 
 # Configurar variáveis de ambiente
-ENV DB_PATH=/var/www/html/banco.sqlite
+ENV DB_PATH=/var/www/html/src/controllers/banco.sqlite
+
 
 # Expor a porta 5100
 EXPOSE 5100

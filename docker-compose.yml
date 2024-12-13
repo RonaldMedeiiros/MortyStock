@@ -1,7 +1,35 @@
+version: '3.8'
+
 services:
   app:
-    build: .
+    image: php:8.1-apache
+    container_name: mortystock_app
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "5100:5100"
+      - "5100:5100" # Mapeia a porta 5100 do contêiner para a máquina local
     volumes:
-      - ./src/controllers/banco.sqlite:/var/www/html/banco.sqlite
+      - ./src:/var/www/html/src # Mapeia o diretório do código
+      - ./vendor:/var/www/html/vendor # Mapeia dependências do Composer
+      - ./src/controllers/banco.sqlite:/var/www/html/src/controllers/banco.sqlite # Mapeia o arquivo do banco SQLite
+    environment:
+      - DB_PATH=/var/www/html/src/controllers/banco.sqlite # Caminho do banco SQLite no contêiner
+    depends_on:
+      - db
+    working_dir: /var/www/html
+
+  db:
+    image: postgres:15 # Caso use PostgreSQL como alternativa
+    container_name: mortystock_db
+    environment:
+      POSTGRES_USER: trabalho_metodologia
+      POSTGRES_PASSWORD: tads2024@
+      POSTGRES_DB: DB_MORTYSTOCK
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
