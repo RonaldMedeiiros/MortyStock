@@ -1,11 +1,7 @@
-version: '3.8'
-
 services:
   app:
     build: .
     ports:
       - "5100:5100"
     volumes:
-      - .:/var/www/html
-    environment:
-      - DB_PATH=/var/www/html/banco.sqlite
+      - ./src/controllers/banco.sqlite:/var/www/html/banco.sqlite
