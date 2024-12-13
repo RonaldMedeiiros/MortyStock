@@ -1,10 +1,13 @@
 # Use uma imagem base do PHP com suporte a Apache
 FROM php:8.1-apache
 
-# Atualizar pacotes e instalar dependências necessárias para o SQLite
+# Atualizar pacotes e instalar dependências necessárias para Composer e SQLite
 RUN apt-get update && apt-get install -y \
     sqlite3 \
     libsqlite3-dev \
+    git \
+    zip \
+    unzip \
     && docker-php-ext-install pdo pdo_sqlite
 
 # Instalar o Composer
