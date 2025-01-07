@@ -12,11 +12,9 @@ services:
       - ./vendor:/var/www/html/vendor
       - ./src/controllers/banco.sqlite:/var/www/html/src/controllers/banco.sqlite
     environment:
-      - APACHE_DOCUMENT_ROOT=/var/www/html
       - DB_PATH=/var/www/html/src/controllers/banco.sqlite
     depends_on:
       - db
-    working_dir: /var/www/html
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.mortystock.rule=Host(`mortystock.mosetech.com.br`)"
