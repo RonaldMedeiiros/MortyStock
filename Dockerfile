@@ -25,9 +25,8 @@ RUN composer install
 # Configurar variáveis de ambiente
 ENV DB_PATH=/var/www/html/src/controllers/banco.sqlite
 
+# Expor a porta 80 para o Apache
+EXPOSE 80
 
-# Expor a porta 5100
-EXPOSE 5100
-
-# Iniciar o servidor PHP embutido na porta 5100
-CMD ["php", "-S", "0.0.0.0:5100"]
+# Iniciar o Apache no primeiro plano
+CMD ["apache2-foreground"]

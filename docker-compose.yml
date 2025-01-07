@@ -7,29 +7,38 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "5100:5100" # Mapeia a porta 5100 do contêiner para a máquina local
     volumes:
-      - ./src:/var/www/html/src # Mapeia o diretório do código
-      - ./vendor:/var/www/html/vendor # Mapeia dependências do Composer
-      - ./src/controllers/banco.sqlite:/var/www/html/src/controllers/banco.sqlite # Mapeia o arquivo do banco SQLite
+      - ./src:/var/www/html/src
+      - ./vendor:/var/www/html/vendor
+      - ./src/controllers/banco.sqlite:/var/www/html/src/controllers/banco.sqlite
     environment:
-      - DB_PATH=/var/www/html/src/controllers/banco.sqlite # Caminho do banco SQLite no contêiner
+      - DB_PATH=/var/www/html/src/controllers/banco.sqlite
     depends_on:
       - db
     working_dir: /var/www/html
 
   db:
-    image: postgres:15 # Caso use PostgreSQL como alternativa
+    image: postgres:15
     container_name: mortystock_db
     environment:
       POSTGRES_USER: trabalho_metodologia
       POSTGRES_PASSWORD: tads2024@
       POSTGRES_DB: DB_MORTYSTOCK
-    ports:
-      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+  nginx:
+    image: nginx:latest
+    container_name: mortystock_nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    depends_on:
+      - app
 
 volumes:
   postgres_data:
