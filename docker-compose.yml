@@ -12,6 +12,7 @@ services:
       - ./vendor:/var/www/html/vendor
       - ./src/controllers/banco.sqlite:/var/www/html/src/controllers/banco.sqlite
     environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html
       - DB_PATH=/var/www/html/src/controllers/banco.sqlite
     depends_on:
       - db
