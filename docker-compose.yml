@@ -18,12 +18,11 @@ services:
       - db
     working_dir: /var/www/html
     labels:
-      - "traefik.enable=true" # Ativa o Traefik para este serviço
-      - "traefik.http.routers.mortystock.rule=Host(`mortystock.mosetech.com.br`)" # Define o subdomínio
-      - "traefik.http.routers.mortystock.entrypoints=web" # Define o uso da porta HTTP
-      - "traefik.http.routers.mortystock.entrypoints=websecure" # Define o uso da porta HTTPS
-      - "traefik.http.routers.mortystock.tls=true" # Ativa o TLS para HTTPS
-      - "traefik.http.services.mortystock.loadbalancer.server.port=80" # Porta exposta pela aplicação
+      - "traefik.enable=true"
+      - "traefik.http.routers.mortystock.rule=Host(`mortystock.mosetech.com.br`)"
+      - "traefik.http.routers.mortystock.entrypoints=websecure"
+      - "traefik.http.routers.mortystock.tls.certresolver=myresolver"
+      - "traefik.http.services.mortystock.loadbalancer.server.port=80"
 
   db:
     image: postgres:15
