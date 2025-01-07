@@ -16,6 +16,13 @@ services:
     depends_on:
       - db
     working_dir: /var/www/html
+    labels:
+      - "traefik.enable=true" # Ativa o Traefik para este serviço
+      - "traefik.http.routers.mortystock.rule=Host(`mortystock.mosetech.com.br`)" # Define o subdomínio
+      - "traefik.http.routers.mortystock.entrypoints=web" # Define o uso da porta HTTP
+      - "traefik.http.routers.mortystock.entrypoints=websecure" # Define o uso da porta HTTPS
+      - "traefik.http.routers.mortystock.tls=true" # Ativa o TLS para HTTPS
+      - "traefik.http.services.mortystock.loadbalancer.server.port=80" # Porta exposta pela aplicação
 
   db:
     image: postgres:15
@@ -26,19 +33,6 @@ services:
       POSTGRES_DB: DB_MORTYSTOCK
     volumes:
       - postgres_data:/var/lib/postgresql/data
-
-  nginx:
-    image: nginx:latest
-    container_name: mortystock_nginx
-    ports:
-      - "80:80"
-      - "8443:443"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/www:/var/www/certbot
-    depends_on:
-      - app
 
 volumes:
   postgres_data:
