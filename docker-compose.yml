@@ -1,13 +1,15 @@
-version: "3.3"
+version: '3.8'
 
 services:
   app:
-    image: php:8.1-fpm
+    build: .
     container_name: mortystock_app
-    volumes:
-      - ./src:/var/www/html
     ports:
-      - "5010:9000"  # Mapeia a porta 5010 no host para a 9000 no container
+      - "5200:5200" # Porta mapeada para acesso direto (opcional, pode ser removida)
+    volumes:
+      - .:/var/www/html
+    environment:
+      - DB_PATH=/var/www/html/banco.sqlite
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.mortystock.rule=Host(`mortystock.mosetech.com.br`)"
@@ -15,25 +17,7 @@ services:
       - "traefik.http.routers.mortystock.tls.certresolver=myresolver"
     networks:
       - traefik_network
-      - mortystock_network
-
-  db:
-    image: postgres:15
-    container_name: mortystock_db
-    environment:
-      POSTGRES_USER: trabalho_metodologia
-      POSTGRES_PASSWORD: tads2024@
-      POSTGRES_DB: DB_MORTYSTOCK
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    networks:
-      - mortystock_network
-
-volumes:
-  postgres_data:
 
 networks:
   traefik_network:
     external: true
-  mortystock_network:
-    driver: bridge
