@@ -26,8 +26,8 @@ RUN composer install
 ENV DB_PATH=/var/www/html/src/controllers/banco.sqlite
 
 # Configurar o diretório raiz do Apache
-RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/*.conf
-RUN sed -ri -e 's!/var/www/!/var/www/html/public!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+RUN sed -ri -e 's!/var/www/html!/var/www/html!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/!/var/www/html!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
 # Expor a porta 5010 para o Apache
 EXPOSE 5010
