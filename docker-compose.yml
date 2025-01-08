@@ -15,6 +15,7 @@ services:
       - "traefik.http.routers.mortystock.rule=Host(`mortystock.mosetech.com.br`)"
       - "traefik.http.routers.mortystock.entrypoints=websecure"
       - "traefik.http.routers.mortystock.tls.certresolver=myresolver"
+      - "traefik.http.services.mortystock.loadbalancer.server.port=5200"
     networks:
       - traefik_network
     restart: always
