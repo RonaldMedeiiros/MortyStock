@@ -6,11 +6,13 @@ services:
     container_name: mortystock_app
     volumes:
       - ./src:/var/www/html
+    ports:
+      - "5010:9000"  # Mapeia a porta 5010 no host para a 9000 no container
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.mortystock.rule=Host(`mortystock.mosetech.com.br`)" # Subdomínio
-      - "traefik.http.routers.mortystock.entrypoints=websecure" # HTTPS
-      - "traefik.http.routers.mortystock.tls.certresolver=myresolver" # Certificado SSL
+      - "traefik.http.routers.mortystock.rule=Host(`mortystock.mosetech.com.br`)"
+      - "traefik.http.routers.mortystock.entrypoints=websecure"
+      - "traefik.http.routers.mortystock.tls.certresolver=myresolver"
     networks:
       - traefik_network
       - mortystock_network
