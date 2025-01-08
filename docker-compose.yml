@@ -15,12 +15,8 @@ services:
       - DB_PATH=/var/www/html/src/controllers/banco.sqlite
     depends_on:
       - db
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.mortystock.rule=Host(`mortystock.mosetech.com.br`)"
-      - "traefik.http.routers.mortystock.entrypoints=websecure"
-      - "traefik.http.routers.mortystock.tls.certresolver=myresolver"
-      - "traefik.http.services.mortystock.loadbalancer.server.port=80"
+    expose:
+      - "5010" # Expor a porta interna para ser acessada pelo proxy reverso
 
   db:
     image: postgres:15
