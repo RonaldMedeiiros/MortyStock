@@ -30,20 +30,6 @@ services:
       - mortystock_network
     restart: always
 
-  nginx:
-    image: nginx:latest
-    container_name: nginx_proxy
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./sites-enabled:/etc/nginx/conf.d
-      - ./certs:/etc/letsencrypt
-      - ./certs-data:/var/lib/letsencrypt
-    networks:
-      - mortystock_network
-    restart: always
-
 volumes:
   postgres_data: # Declaração do volume nomeado
 
