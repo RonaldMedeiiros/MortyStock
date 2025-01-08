@@ -13,10 +13,8 @@ services:
       - ./src/controllers/banco.sqlite:/var/www/html/src/controllers/banco.sqlite
     environment:
       - DB_PATH=/var/www/html/src/controllers/banco.sqlite
-    depends_on:
-      - db
-    expose:
-      - "5010" # Expor a porta interna para ser acessada pelo proxy reverso
+    networks:
+      - mortystock_network
 
   db:
     image: postgres:15
@@ -27,6 +25,25 @@ services:
       POSTGRES_DB: DB_MORTYSTOCK
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - mortystock_network
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx_proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./sites-enabled:/etc/nginx/conf.d
+      - ./certs:/etc/letsencrypt
+      - ./certs-data:/var/lib/letsencrypt
+    networks:
+      - mortystock_network
 
 volumes:
   postgres_data:
+
+networks:
+  mortystock_network:
+    driver: bridge
