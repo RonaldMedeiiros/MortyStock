@@ -1,23 +1,19 @@
-version: '3.3'
+version: "3.8"
 
 services:
   app:
-    image: php:8.1-apache
+    image: php:8.1-fpm
     container_name: mortystock_app
-    ports:
-      - "5010:80"  # Mapeia a porta 80 do container para a porta 5010 do host
-    build:
-      context: .
-      dockerfile: Dockerfile
     volumes:
-      - ./src:/var/www/html/src
-      - ./vendor:/var/www/html/vendor
-      - ./src/controllers/banco.sqlite:/var/www/html/src/controllers/banco.sqlite
-    environment:
-      - DB_PATH=/var/www/html/src/controllers/banco.sqlite
+      - ./src:/var/www/html
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mortystock.rule=Host(`mortystock.mosetech.com.br`)" # Subdomínio
+      - "traefik.http.routers.mortystock.entrypoints=websecure" # HTTPS
+      - "traefik.http.routers.mortystock.tls.certresolver=myresolver" # Certificado SSL
     networks:
+      - traefik_network
       - mortystock_network
-    restart: always
 
   db:
     image: postgres:15
@@ -30,11 +26,12 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - mortystock_network
-    restart: always
 
 volumes:
-  postgres_data: # Declaração do volume nomeado
+  postgres_data:
 
 networks:
+  traefik_network:
+    external: true
   mortystock_network:
     driver: bridge
