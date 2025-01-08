@@ -15,7 +15,7 @@ services:
       - DB_PATH=/var/www/html/src/controllers/banco.sqlite
     networks:
       - mortystock_network
-    restart: always  # Adiciona reinicialização automática
+    restart: always
 
   db:
     image: postgres:15
@@ -28,7 +28,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - mortystock_network
-    restart: always  # Adiciona reinicialização automática
+    restart: always
 
   nginx:
     image: nginx:latest
@@ -42,4 +42,11 @@ services:
       - ./certs-data:/var/lib/letsencrypt
     networks:
       - mortystock_network
-    restart: always  # Adiciona reinicialização automática
+    restart: always
+
+volumes:
+  postgres_data: # Declaração do volume nomeado
+
+networks:
+  mortystock_network:
+    driver: bridge
