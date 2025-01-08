@@ -4,6 +4,8 @@ services:
   app:
     image: php:8.1-apache
     container_name: mortystock_app
+    ports:
+      - "5010:80"  # Mapeia a porta 80 do container para a porta 5010 do host
     build:
       context: .
       dockerfile: Dockerfile
